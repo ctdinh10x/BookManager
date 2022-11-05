@@ -213,3 +213,10 @@
     border: none;
     cursor: pointer;
 }
+
+.error-message{
+	color: red;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}

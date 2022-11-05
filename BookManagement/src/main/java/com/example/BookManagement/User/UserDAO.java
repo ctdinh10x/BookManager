@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
+
 import com.example.BookManagement.Book;
 
 public class UserDAO {
@@ -52,19 +56,29 @@ public class UserDAO {
 		return dem;
 	}
 	
-	public void insertUser(User user) throws SQLException{
+	PasswordEncoder passwordEncoder;
+	
+	public String insertUser(User user) throws SQLException{
+		passwordEncoder = new BCryptPasswordEncoder();
+		String message = "";
 		try(Connection connection = getConnection();
 				PreparedStatement ps = connection.prepareStatement(INSERT_USER_SQL);) {
 			ps.setInt(1,selectAllUsers()+100);
 			ps.setString(2, user.getUserName());
-			ps.setString(3, user.getPassWord());
+			ps.setString(3, passwordEncoder.encode(user.getPassWord()));
 			ps.setString(4,user.getEmail());
 			ps.setString(5,user.getPhoneNumber());
 			ps.setString(6,"USER");
 			ps.executeUpdate();
-		} catch (Exception e) {
+			message = "Added book successfully";
+		}catch(SQLException e) {
+			String error = e.getMessage();
+			message = error;
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
+		return message;
 	}
 	
 	public List<User> selectUser(String UserName) {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Đăng nhập</title>
     <link rel="stylesheet" th:href="@{/css/style-login.css}">
     <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
 </head>
@@ -20,7 +20,7 @@
                     <a th:href="@{/home}">
                         <i class="ti-close"></i>
                     </a>
-                </div>
+                </div>	
                 <form th:action="@{/j_spring_security_check}" class="list_info" method="post">
                     <div class="email_info">
                         <p>Username</p>
@@ -30,18 +30,24 @@
                         <p>Password</p>
                         <input type="password" name="password" required>
                     </div>
+                    <div th:if="${param.error}">
+                    	<p class="error-message">Sai tên đăng nhập hoặc mật khẩu</p>
+                    </div>
+                    
                     <div class="check_info">
                         <input class="checkbox" type="checkbox" name="remember-me"> Remember me
                     </div>
+                    
+                    
                     <div id="login" class="btn_signup">
                         <div class="signup_button_hover">
                             <div class="signup_button">
                                 <button class="submit_button" type="submit">Log in</button>
                             </div>
                         </div>
-                        
                     </div>
                 </form>
+                
                 <div class="end_signup">
                     <p>Don't have an account?</p>
                     <a th:href="@{/book/SignUp}">Sign up</a>

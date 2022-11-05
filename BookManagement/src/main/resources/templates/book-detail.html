@@ -27,6 +27,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="inforbook">
                         <div class="BookCode">
                             <p>Mã sách</p>
@@ -87,18 +88,50 @@
                 </div>
                 <div class="button">
                     <div class="save_form">
-                        <button type="submit">Save Employee</button>
+                        <button type="button" class="btn btn-secondary" value="edit" id="edit">Chỉnh sửa</button>
+                        <button type="submit" value="save" id="save">Lưu Sách</button>
+        			    <button type="button" class="btn btn-secondary cancel" value="cancel" id="cancel">Không lưu</button>
                     </div>
+					<script>    
+	if (window.location.toString().includes("-1")){
+        $('#edit').hide();
+        $('#save').show();
+        $('input').attr("disabled", false)
+        $('select').attr("disabled", false)
+        
+    }
+    else{
+        $('#edit').click(function () {
+            $(this).hide();
+            $('#save, #cancel').show();
+            $('input').attr("disabled", false)
+            $('select').attr("disabled", false)
+        });
 
+
+        $('#cancel').click(function () {
+            $('#edit').show();
+            $('#save, #cancel').hide();
+            $('input').attr("disabled", true)
+            $('select').attr("disabled", true)
+        });
+
+        $('#save').click(function () {
+            $(this).hide();
+            $('#cancel').hide();
+            $('#edit').show();
+        });
+    }
+	</script>
                     <div class="cancel">
                         <a th:href="@{/book}">Cancel</a>
                     </div>
                 </div>
-                
             </form>
         </div>
     </div>
-    <Script>
+    <script>    
+
 	window.addEventListener('load', function () {
 		document.querySelector('input[type="file"]').addEventListener('change', function () {
 			if (this.files && this.files[0]) {
@@ -111,6 +144,6 @@
 			}
 		});
 	});
-	</Script>
+	</script>
 </body>
 </html>

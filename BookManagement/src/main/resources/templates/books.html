@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Employee</title>
+<title>Thư viện sách</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -57,12 +57,14 @@
 					<td th:text="${book.ReleaseDate}"></td>
 					<td th:text="${book.NumberOfPages}"></td>
 					<td><a th:href="@{book/{BookCode}(BookCode = ${book.BookCode})}"
-						class="btn btn-success">View</a>
-						<a th:href="@{book/delete/{BookCode}(BookCode=${book.BookCode})}" class="btn btn-danger">Delete</a></td>
+						class="btn btn-success">Xem</a>
+						<a th:href="@{book/delete/{BookCode}(BookCode=${book.BookCode})}" class="btn btn-danger">Xóa</a></td>
 				</tr>
 			</tbody>
+			
+			
 		</table>
-		<a th:href="@{book/{BookCode}(BookCode = -1)}" class="btn btn-success col-lg-12">New Employee</a>
+		<a th:href="@{book/{BookCode}(BookCode = -1)}" class="btn btn-success col-lg-12">Thêm sách mới</a>
 	</div>
 </body>
 </html>

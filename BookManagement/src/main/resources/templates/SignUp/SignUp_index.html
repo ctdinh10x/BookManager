@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Đăng kí</title>
     <link rel="stylesheet" th:href="@{/css/style-signup.css}">
     <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}"> 
 </head>
@@ -28,6 +28,7 @@
                             <p>Username</p>
                             <input type="text" name="UserName" th:value = "${user.UserName}" required>
                         </div>
+                        
                         <div class="email_info">
                             <p>Email</p>
                             <input type="text" name="Email" th:value = "${user.Email}" required>
@@ -41,13 +42,18 @@
                             <input type="text" name="PhoneNumber" th:value = "${user.PhoneNumber}" required>
                         </div>
                     </div>
+                    
+                    <div th:text="${error}"></div>
 
                     <div class="btn_signup">
                         <div class="signup_button">
                             <button class="submit_button" type="submit">Sign up</button>
                         </div>
                     </div>
+                    
                 </form>
+                
+                
                
                 <div class="end_signup">
                     <p>Already have an account?</p>
